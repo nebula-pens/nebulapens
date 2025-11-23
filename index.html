@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nebula Pens Order</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #111;
+    color: white;
+}
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: #222;
+    border-radius: 10px;
+}
+label {
+    display: block;
+    margin-top: 15px;
+}
+select, input, textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+}
+button {
+    background: #6a00ff;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+button:hover {
+    opacity: 0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Nebula Pens Order Form</h2>
+
+<label>Name:</label>
+<input type="text" id="customerName" required>
+
+<label>Phone Number:</label>
+<input type="text" id="phoneNumber" required>
+
+<label>Email:</label>
+<input type="email" id="customerEmail" required>
+
+<label>Address:</label>
+<textarea id="address" required></textarea>
+
+<label>Body Colour:</label>
+<select id="penBodyColor">
+    <option value="Red">Red</option>
+    <option value="Orange">Orange</option>
+    <option value="Yellow">Yellow</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    <option value="Indigo">Indigo</option>
+    <option value="Violet">Violet</option>
+    <option value="Pink">Pink</option>
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+    <option value="Silver">Silver</option>
+    <option value="Gold">Gold</option>
+</select>
+
+<label>Grip Colour:</label>
+<select id="gripColor">
+    <option value="Red">Red</option>
+    <option value="Orange">Orange</option>
+    <option value="Yellow">Yellow</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    <option value="Indigo">Indigo</option>
+    <option value="Violet">Violet</option>
+    <option value="Pink">Pink</option>
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+    <option value="Silver">Silver</option>
+    <option value="Gold">Gold</option>
+</select>
+
+<label>Ink Colour:</label>
+<select id="inkColor">
+    <option value="Blue">Blue</option>
+    <option value="Black">Black</option>
+</select>
+
+<label>Quantity:</label>
+<select id="quantity">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+</select>
+
+<button onclick="submitOrder()">Submit Order</button>
+
+<p id="status"></p>
+</div>
+
+<script>
+function submitOrder() {
+    document.getElementById("status").innerText = "Submitting...";
+
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxzrAgwt46ulQpMWz2xIoLPFfi6oufbhWJ78z2Y62y1BRl6-GnJMWIPvzZvTrM0iO4D/exec";
+
+    const orderData = {
+        customerName: document.getElementById("customerName").value,
+        phoneNumber: document.getElementById("phoneNumber").value,
+        customerEmail: document.getElementById("customerEmail").value,
+        address: document.getElementById("address").value,
+        penBodyColor: document.getElementById("penBodyColor").value,
+        gripColor: document.getElementById("gripColor").value,
+        inkColor: document.getElementById("inkColor").value,
+        quantity: document.getElementById("quantity").value
+    };
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(orderData)
+    })
+    .then(res => res.json())
+    .then(res => {
+        if (res.status === "success") {
+            document.getElementById("status").innerText = "Order submitted successfully!";
+        } else {
+            document.getElementById("status").innerText = "Error submitting order.";
+        }
+    })
+    .catch(err => {
+        document.getElementById("status").innerText = "Network error.";
+    });
+}
+</script>
+
+</body>
+</html>
