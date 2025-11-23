@@ -1,162 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nebula Pens Order</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hunter-X Pen Order Form</title>
 
-<style>
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #4b0082, #8a2be2);
-        margin: 0;
-        padding: 0;
-        color: white;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
 
-    .container {
-        max-width: 480px;
-        margin: 40px auto;
-        background: rgba(255, 255, 255, 0.15);
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-        backdrop-filter: blur(8px);
+    h1 {
+      margin-top: 40px;
+      font-size: 38px;
+      font-weight: bold;
     }
 
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 26px;
+    form {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      width: 85%;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
 
     label {
-        font-size: 15px;
-        margin-top: 12px;
-        display: block;
+      display: block;
+      text-align: left;
+      font-size: 18px;
+      margin-bottom: 5px;
+      margin-top: 15px;
     }
 
-    input, textarea, select {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        border-radius: 8px;
-        margin-top: 6px;
-        font-size: 15px;
-    }
-
-    textarea {
-        height: 80px;
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
     }
 
     button {
-        width: 100%;
-        padding: 14px;
-        background: #7b2fff;
-        border: none;
-        border-radius: 10px;
-        margin-top: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        color: white;
-        cursor: pointer;
-        transition: 0.2s;
+      width: 100%;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      background: #fff;
+      color: #6a11cb;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 15px;
     }
 
     button:hover {
-        background: #9d54ff;
+      background: #e6e6e6;
     }
 
-    #status {
-        text-align: center;
-        margin-top: 15px;
-        font-size: 16px;
-    }
-</style>
+  </style>
 </head>
-
 <body>
 
-<div class="container">
-<h2>Nebula Pens Order Form</h2>
+  <h1>Hunter-X Custom Pen Order</h1>
 
-<label>Name:</label>
-<input type="text" id="customerName" required>
+  <form id="orderForm">
 
-<label>Phone Number:</label>
-<input type="text" id="phoneNumber" required>
+    <label>Name</label>
+    <input type="text" name="name" required>
 
-<label>Email:</label>
-<input type="email" id="customerEmail" required>
+    <label>Grade & Section</label>
+    <input type="text" name="grade" required>
 
-<label>Address:</label>
-<textarea id="address" required></textarea>
+    <label>Pen Body Colour</label>
+    <input type="text" name="bodyColour" placeholder="Example: Black / Purple / Neon Blue" required>
 
-<label>Body Colour:</label>
-<select id="penBodyColor">
-    <option>Red</option><option>Orange</option><option>Yellow</option>
-    <option>Green</option><option>Blue</option><option>Indigo</option>
-    <option>Violet</option><option>Pink</option><option>Black</option>
-    <option>White</option><option>Silver</option><option>Gold</option>
-</select>
+    <label>Ink Colour</label>
+    <input type="text" name="inkColour" placeholder="Black / Blue / Red etc." required>
 
-<label>Grip Colour:</label>
-<select id="gripColor">
-    <option>Red</option><option>Orange</option><option>Yellow</option>
-    <option>Green</option><option>Blue</option><option>Indigo</option>
-    <option>Violet</option><option>Pink</option><option>Black</option>
-    <option>White</option><option>Silver</option><option>Gold</option>
-</select>
+    <label>Extra Customisation</label>
+    <textarea name="custom" rows="3" placeholder="Name engraving / stickers / patterns etc."></textarea>
 
-<label>Ink Colour:</label>
-<select id="inkColor">
-    <option>Blue</option><option>Black</option>
-</select>
+    <button type="submit">Submit Order</button>
 
-<label>Quantity:</label>
-<select id="quantity">
-    <option>1</option><option>2</option><option>3</option>
-    <option>4</option><option>5</option>
-</select>
+  </form>
 
-<button onclick="submitOrder()">Submit Order</button>
-
-<p id="status"></p>
-</div>
-
-<script>
-function submitOrder() {
-    document.getElementById("status").innerText = "Submitting...";
-
-    // ⭐ NEW SCRIPT URL YOU GAVE ME ⭐
+  <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbxzrAgwt46ulQpMWz2xIoLPFfi6oufbhWJ78z2Y62y1BRl6-GnJMWIPvzZvTrM0iO4D/exec";
 
-    const orderData = {
-        customerName: customerName.value,
-        phoneNumber: phoneNumber.value,
-        customerEmail: customerEmail.value,
-        address: address.value,
-        penBodyColor: penBodyColor.value,
-        gripColor: gripColor.value,
-        inkColor: inkColor.value,
-        quantity: quantity.value
-    };
+    document.getElementById("orderForm").addEventListener("submit", e => {
+      e.preventDefault();
 
-    fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(orderData)
-    })
-    .then(r => r.json())
-    .then(res => {
-        if (res.status === "success") {
-            status.innerText = "Order submitted successfully!";
-        } else {
-            status.innerText = "Error submitting order.";
-        }
-    })
-    .catch(() => status.innerText = "Network error.");
-}
-</script>
+      let formData = new FormData(e.target);
+
+      fetch(scriptURL, { method: "POST", body: formData })
+        .then(() => alert("Order submitted!"))
+        .catch(() => alert("Error! Try again."));
+    });
+  </script>
 
 </body>
 </html>
