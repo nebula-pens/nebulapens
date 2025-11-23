@@ -6,76 +6,72 @@
 <title>Nebula Pens Order</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-    padding: 0;
-    margin: 0;
-    background: linear-gradient(135deg, #6a00ff, #a600ff, #d400ff);
-    background-size: 300% 300%;
-    animation: nebula 8s infinite alternate;
-    color: white;
-}
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #4b0082, #8a2be2);
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
 
-@keyframes nebula {
-    0% { background-position: left; }
-    100% { background-position: right; }
-}
+    .container {
+        max-width: 480px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        backdrop-filter: blur(8px);
+    }
 
-.container {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 25px;
-    background: rgba(20, 20, 20, 0.6);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 25px rgba(0,0,0,0.4);
-}
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
 
-h2 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 10px;
-}
+    label {
+        font-size: 15px;
+        margin-top: 12px;
+        display: block;
+    }
 
-label {
-    display: block;
-    margin-top: 15px;
-    font-size: 16px;
-    font-weight: bold;
-}
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 6px;
+        font-size: 15px;
+    }
 
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 6px;
-    border-radius: 8px;
-    border: none;
-    font-size: 16px;
-    outline: none;
-}
+    textarea {
+        height: 80px;
+    }
 
-button {
-    width: 100%;
-    padding: 15px;
-    margin-top: 25px;
-    border-radius: 10px;
-    border: none;
-    background: #ff00ff;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+    button {
+        width: 100%;
+        padding: 14px;
+        background: #7b2fff;
+        border: none;
+        border-radius: 10px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+    }
 
-button:hover {
-    background: #cc00cc;
-}
+    button:hover {
+        background: #9d54ff;
+    }
 
-#status {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 16px;
-}
+    #status {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 16px;
+    }
 </style>
 </head>
 
@@ -94,19 +90,34 @@ button:hover {
 <input type="email" id="customerEmail" required>
 
 <label>Address:</label>
-<textarea id="address" rows="3" required></textarea>
+<textarea id="address" required></textarea>
 
-<label>Body Colour (Red, Silver, Gold, etc):</label>
-<input type="text" id="penBodyColor" required>
+<label>Body Colour:</label>
+<select id="penBodyColor">
+    <option>Red</option><option>Orange</option><option>Yellow</option>
+    <option>Green</option><option>Blue</option><option>Indigo</option>
+    <option>Violet</option><option>Pink</option><option>Black</option>
+    <option>White</option><option>Silver</option><option>Gold</option>
+</select>
 
-<label>Grip Colour (Any colour):</label>
-<input type="text" id="gripColor" required>
+<label>Grip Colour:</label>
+<select id="gripColor">
+    <option>Red</option><option>Orange</option><option>Yellow</option>
+    <option>Green</option><option>Blue</option><option>Indigo</option>
+    <option>Violet</option><option>Pink</option><option>Black</option>
+    <option>White</option><option>Silver</option><option>Gold</option>
+</select>
 
-<label>Ink Colour (Blue or Black):</label>
-<input type="text" id="inkColor" required>
+<label>Ink Colour:</label>
+<select id="inkColor">
+    <option>Blue</option><option>Black</option>
+</select>
 
 <label>Quantity:</label>
-<input type="number" id="quantity" required min="1">
+<select id="quantity">
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5</option>
+</select>
 
 <button onclick="submitOrder()">Submit Order</button>
 
@@ -117,34 +128,33 @@ button:hover {
 function submitOrder() {
     document.getElementById("status").innerText = "Submitting...";
 
+    // ⭐ NEW SCRIPT URL YOU GAVE ME ⭐
     const scriptURL = "https://script.google.com/macros/s/AKfycbxzrAgwt46ulQpMWz2xIoLPFfi6oufbhWJ78z2Y62y1BRl6-GnJMWIPvzZvTrM0iO4D/exec";
 
     const orderData = {
-        customerName: document.getElementById("customerName").value,
-        phoneNumber: document.getElementById("phoneNumber").value,
-        customerEmail: document.getElementById("customerEmail").value,
-        address: document.getElementById("address").value,
-        penBodyColor: document.getElementById("penBodyColor").value,
-        gripColor: document.getElementById("gripColor").value,
-        inkColor: document.getElementById("inkColor").value,
-        quantity: document.getElementById("quantity").value
+        customerName: customerName.value,
+        phoneNumber: phoneNumber.value,
+        customerEmail: customerEmail.value,
+        address: address.value,
+        penBodyColor: penBodyColor.value,
+        gripColor: gripColor.value,
+        inkColor: inkColor.value,
+        quantity: quantity.value
     };
 
     fetch(scriptURL, {
         method: "POST",
         body: JSON.stringify(orderData)
     })
-    .then(res => res.json())
+    .then(r => r.json())
     .then(res => {
         if (res.status === "success") {
-            document.getElementById("status").innerText = "Order submitted successfully!";
+            status.innerText = "Order submitted successfully!";
         } else {
-            document.getElementById("status").innerText = "Error submitting order.";
+            status.innerText = "Error submitting order.";
         }
     })
-    .catch(err => {
-        document.getElementById("status").innerText = "Network error.";
-    });
+    .catch(() => status.innerText = "Network error.");
 }
 </script>
 
